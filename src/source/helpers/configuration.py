@@ -1,0 +1,1 @@
+configuration={'db':'photoz','dbuser':'root','dbpassword':'admin@lolz','dbhost':'localhost','secretkey':'abraKAdabra'}

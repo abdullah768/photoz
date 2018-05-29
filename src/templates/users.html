@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>PhotoZ</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+</head>
+
+<body style="margin:0px">
+      <div id="nav-bar">
+          <ul>
+          <li><a class="active" href="/">PHOTOZ</a></li>
+          <li><a href="/users">Users</a></li>
+          {% if type.loggedin==True %}
+          <li><a href="/">Home</a></li>
+          <li style="float:right"><a href="/logout">Logout</a></li>
+          <li style="float:right"><a href="/settings">Settings</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div id="user">
+        <div id="dp">
+          <div style="margin:20px">
+            <a href="/users">
+              <img id="dpimg" src="{{url_for('static',filename='black.jpg')}}">
+            </a>
+          </div>
+        </div>
+        <div id="details">
+          <p>
+            <span style="font-size:40px">List of users</span><br>
+          </p>
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+      <div>
+        {% for pic in pics %}
+            <a href="/user/{{pic[0]}}">
+              <div id="album-box">
+                <img src="{{url_for('site.viewimage',iname=pic[1])}}">
+                <p>{{pic[0]}}</p>
+              </div>
+            </a>
+        {% endfor %}
+      </div>
+
+</body>
+
+</html>

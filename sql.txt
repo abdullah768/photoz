@@ -1,0 +1,9 @@
+create database photoz;
+use photoz;
+create table users( userid int NOT NULL AUTO_INCREMENT, username varchar(50),email varchar(50),fname varchar(50),lname varchar(50),password varchar(200),gender varchar(10),propicid int,PRIMARY KEY (userid));
+create table albums( albumid int NOT NULL AUTO_INCREMENT, userid int,name varchar(100),coverid int,created varchar(30),likes int,privacy varchar(10),description varchar(300),count int,PRIMARY KEY (albumid),FOREIGN KEY (userid) REFERENCES users(userid));
+create table pictures( picid int NOT NULL AUTO_INCREMENT, albumid int,name varchar(100),ext varchar(10),created varchar(30),likes int,privacy varchar(10),description varchar(300),PRIMARY KEY (picid),FOREIGN KEY (albumid) REFERENCES albums(albumid));
+ALTER TABLE albums ADD FOREIGN KEY (coverid) REFERENCES pictures(picid);
+ALTER TABLE users ADD FOREIGN KEY (propicid) REFERENCES pictures(picid);
+create table albumlikes(albumid int,userid int,FOREIGN KEY (userid) REFERENCES users(userid),FOREIGN KEY (albumid) REFERENCES albums(albumid));
+create table piclikes(picid int,userid int,FOREIGN KEY (userid) REFERENCES users(userid),FOREIGN KEY (picid) REFERENCES pictures(picid));

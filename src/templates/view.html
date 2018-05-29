@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>PhotoZ</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+</head>
+
+<body style="margin:0px">
+      <div id="nav-bar">
+          <ul>
+          <li><a class="active" href="/">PHOTOZ</a></li>
+          <li><a href="/users">Users</a></li>
+          {% if type.loggedin==True %}
+          <li><a href="/">Home</a></li>
+          {% if type.owner==True %}
+            {% if type.type=="album" %}
+                <li><a href="/user/{{userd.username}}/album/{{albumd.id}}/addphoto">Add photo</a></li>
+                <li><a href="/user/{{userd.username}}/album/{{albumd.id}}/editalbum">Edit Album</a></li>
+                <li><a href="/user/{{userd.username}}/album/{{albumd.id}}/deletealbum">Delete Album</a></li>
+            {% elif type.type=="pic" %}
+              <li><a href="/user/{{userd.username}}/album/{{albumd.id}}/photo/{{picd.id}}/editphoto">Edit photo</a></li>
+              <li><a href="/user/{{userd.username}}/album/{{albumd.id}}/photo/{{picd.id}}/deletephoto">Delete photo</a></li>
+            {% else %}
+              <li><a href="/user/{{userd.username}}/addalbum">Add album</a></li>
+            {% endif %}
+          {% endif %}
+
+          <li style="float:right"><a href="/logout">Logout</a></li>
+          <li style="float:right"><a href="/settings">Settings</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div id="user">
+        <div id="dp">
+          <div style="margin:20px">
+            <a href="/user/{{userd.username}}/album/{{albumd.id}}/photo/{{picd.id}}">
+              <img id="dpimg" src="{{url_for('site.viewimage',iname=picd.id)}}">
+            </a>
+          </div>
+        </div>
+        <div id="details">
+          <p>
+            <span style="font-size:40px">{{type.name}}</span><br>
+            {% if type.type=="pic" %}
+                <span style="font-size:25px">{{type.likes}} Likes</span><br>
+              {% if type.loggedin==true %}
+                <span style="font-size:25px"><a href="/user/{{userd.username}}/album/{{albumd.id}}/photo/{{picd.id}}/piclike">{{type.like}}</a></span><br>
+              {% endif %}
+                <span style="font-size:10px">created on {{type.date}}</span>
+            {% elif type.type=="album" %}
+                <span style="font-size:25px">{{type.likes}} Likes</span><br>
+                {% if type.loggedin==True %}
+                <span style="font-size:25px"><a href="/user/{{userd.username}}/album/{{albumd.id}}/albumlike">{{type.like}}</a></span><br>
+                {% endif %}
+                <span style="font-size:10px">created on {{type.date}}</span>
+            {% else %}
+                <span style="font-size:25px">{{userd.name}}</span>
+            {% endif %}
+          </p>
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+      {% if type.type!="user" %}
+      <div id="desc" style="background-color:#13262b;color:white;font-size:20px;box-sizing:border-box;">
+        <p style="margin:0px;padding:10px;">
+        {{type.description}}
+        </p>
+      </div>
+      {% endif %}
+      <div>
+        {% if type.type=="pic" %}
+          <img src="{{url_for('site.viewimage',iname=picd.id)}}">
+        {% else %}
+            {% for pic in pics %}
+              {% if type.type=="album" %}
+                <a href="/user/{{userd.username}}/album/{{albumd.id}}/photo/{{pic[0]}}">
+              {% else %}
+                <a href="/user/{{userd.username}}/album/{{pic[2]}}">
+              {% endif %}
+                  <div id="album-box">
+                    <img src="{{url_for('site.viewimage',iname=pic[0])}}">
+                    <p>{{pic[1]}}</p>
+                  </div>
+                </a>
+            {% endfor %}
+      {% endif %}
+      </div>
+
+</body>
+
+</html>

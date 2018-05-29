@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='indexstyle.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='font.css') }}">
+  <title>PhotoZ</title>
+</head>
+
+<body>
+
+  <div class="pname">
+
+    <h1>PHOTOZ</h1>
+
+  </div>
+
+  <div class="btns">
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary openmd" data-toggle="modal" data-target="#login">
+  Log in
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="login-modal">Log in</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+
+          <form id="formlogin" action="javascript:void(0);">
+
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username">
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Log in</button>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-primary openmd" data-toggle="modal" data-target="#signup">
+  Sign up
+</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="signup-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signup-modal">Log in</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+
+          <form id="formsignup" action="javascript:void(0);" enctype = "multipart/form-data">
+
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+            </div>
+
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username">
+            </div>
+
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" class="form-control" name="fname" id="fname" placeholder="Enter First name">
+            </div>
+
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" class="form-control" name="lname" id="lname" placeholder="Enter Last name">
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select class="form-control" name="gender" id="gender">
+              <option>male</option>
+              <option>female</option>
+              <option>other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+            </div>
+
+            <div class="form-group">
+              <label for="rpassword">Re-Enter Password</label>
+              <input type="password" class="form-control" name="rpassword" id="rpassword" placeholder="Re-enter Password">
+            </div>
+
+            <div class="form-group">
+              <label for="prophoto">Profile Picture</label>
+              <input type="file" class="form-control-file" name="prophoto" id="prophoto">
+            </div>
+
+            <button type="submit" class="btn btn-primary" >Submit</button>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script>
+      $(function() {
+        $('#formsignup').on('submit',function() {
+            $.ajax({
+                url: '/signup',
+                data: new FormData( this ),
+                  processData: false,
+                  contentType: false,
+                type: 'POST',
+                success: function(response) {
+                    if(response=="success")
+                    response+="! Please login now!";
+                    alert(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+         $('#formlogin').on('submit',function() {
+            $.ajax({
+                url: '/login',
+                data: $('#formlogin').serialize(),
+                type: 'POST',
+                success: function(response) {
+                  if(response=="success")
+                    window.location="/";
+                  else
+                    alert(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+  </script>
+</body>
+
+</html>

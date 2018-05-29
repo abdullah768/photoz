@@ -1,0 +1,85 @@
+#nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #043c3c;
+}
+
+#nav-bar  li {
+    float: left;
+}
+
+#nav-bar li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#nav-bar  li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+#user{
+  height:200px;
+  margin-top:46px;
+  background-color:#0b1f1f;
+  overflow:hidden;
+}
+#dp{
+  display:inline-block;
+  float:left;
+  margin:0px 30px 0px 150px;
+}
+#dpimg{
+  height:160px;
+  width:160px;
+  object-fit:cover;
+  display:inline-block;
+}
+#details{
+  display:inline-block;
+  float:left;
+}
+#details p{
+  margin-top:50px;
+  color:white;
+}
+#album-box{
+  height:400px;
+  width:400px;
+  background-color:#0b1f1f;
+  border:10px solid #5a1212;
+  box-sizing:border-box ;
+  display:inline-block;
+  margin: 3px;
+}
+#album-box img{
+  height:340px;
+  width:380px;
+  object-fit:cover;
+  box-sizing: border-box;
+}
+#album-box p{
+  margin:5px 10px 0px;
+  font-size:20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align:center;
+  color:white;
+}
+#desc{
+    background-color:#13262b;
+    color:white;
+    font-size:20px;
+}
