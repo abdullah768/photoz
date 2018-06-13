@@ -1,10 +1,12 @@
-# photoz
+# Photoz
 A web application in which users can login, create albums that contain photos and like them!
 
 It has been built using flask framework in python 3.5.
 
 It is live at:
+
 http://ec2-13-127-160-149.ap-south-1.compute.amazonaws.com/
+
 http://ec2-13-127-160-149.ap-south-1.compute.amazonaws.com/api
 
 Steps to run it:
